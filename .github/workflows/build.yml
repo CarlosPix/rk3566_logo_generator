@@ -11,6 +11,7 @@ on:
         required: true
         options:
         - RG353
+        - RG353 - Not Touch
         - RG503
         - RK2023
       picture_link:
@@ -47,8 +48,11 @@ jobs:
         if [[ "${{ github.event.inputs.device_unit }}" == "RG353" ]]; then
            whichgit="RG353V-kernel"
            git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b dev
+        elif [[ "${{ github.event.inputs.device_unit }}" == "RG353 - Not Touch" ]]; then
+           whichgit="RG353V-kernel"
+           git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b dev-no_touch
         elif [[ "${{ github.event.inputs.device_unit }}" == "RG503" ]]; then
-           whichgit="rg503Kernel"
+           whichgit="RG503-Kernel"
            git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git
         else
            whichgit="RG353V-kernel"
