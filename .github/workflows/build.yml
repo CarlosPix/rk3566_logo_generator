@@ -10,7 +10,7 @@ on:
         description: 'Choose your device'
         required: true
         options:
-        - RG353
+        - RG353 - Touch
         - RG353 - Not Touch
         - RG503
         - RK2023
@@ -45,8 +45,10 @@ jobs:
         sudo apt -y install build-essential git lzop build-essential gcc bc libncurses5-dev libc6-i386 lib32stdc++6 zlib1g netpbm
 
         # Clone the correct kernel repo for this kernel build
-        if [[ "${{ github.event.inputs.device_unit }}" == "RG353" ]]; then
+        which_defconfig="rk3566_optimized_linux_defconfig"
+        if [[ "${{ github.event.inputs.device_unit }}" == "RG353 - Touch" ]]; then
            whichgit="RG353V-kernel"
+           which_defconfig="rk3566_touch_optimized_linux_defconfig"
            git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b dev
         elif [[ "${{ github.event.inputs.device_unit }}" == "RG353 - Not Touch" ]]; then
            whichgit="RG353V-kernel"
@@ -93,7 +95,7 @@ jobs:
         fi
 
         # If no errors, let's build the kernel and make it available as an artifact if successful
-        make ARCH=arm64 rk3566_optimized_linux_defconfig && make ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=rk3566_optimized_linux_defconfig -j2
+        make ARCH=arm64 ${which_defconfig} && make ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=${which_defconfig} -j2
         cp arch/arm64/boot/Image ../.
     - name: Get kernel artifact
       uses: actions/upload-artifact@v3
