@@ -52,7 +52,7 @@ jobs:
            whichgit="RG353V-kernel"
            git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b dev-no_touch
         elif [[ "${{ github.event.inputs.device_unit }}" == "RG503" ]]; then
-           whichgit="RG503-Kernel"
+           whichgit="rg503-kernel-linux"
            git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git
         else
            whichgit="RG353V-kernel"
