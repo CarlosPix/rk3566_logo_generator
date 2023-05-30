@@ -45,14 +45,14 @@ jobs:
 
         # Clone the correct kernel repo for this kernel build
         if [[ "${{ github.event.inputs.device_unit }}" == "RG353" ]]; then
-           whichgit="RG353VKernel"
-           git clone --depth=1 --recursive https://github.com/christianhaitian/${whichgit}.git
+           whichgit="RG353V-kernel"
+           git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b dev
         elif [[ "${{ github.event.inputs.device_unit }}" == "RG503" ]]; then
            whichgit="rg503Kernel"
-           git clone --depth=1 --recursive https://github.com/christianhaitian/${whichgit}.git
+           git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git
         else
-           whichgit="RG353VKernel"
-           git clone --depth=1 --recursive https://github.com/christianhaitian/${whichgit}.git -b rk2023
+           whichgit="RG353V-kernel"
+           git clone --depth=1 --recursive https://github.com/JuanMiguelBG/${whichgit}.git -b rk2023
         fi
 
         # Install the necessary toolchain for building the kernel
