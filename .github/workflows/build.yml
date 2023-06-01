@@ -93,6 +93,8 @@ jobs:
           echo "::error::${{ github.event.inputs.picture_link }} is not a compatible png file"
           exit 1
         fi
+        cp -f drivers/video/logo/logo_linux_clut224.ppm drivers/video/logo/logo_hdmi_clut224.ppm
+
 
         # If no errors, let's build the kernel and make it available as an artifact if successful
         make ARCH=arm64 ${which_defconfig} && make ARCH=arm64 KERNEL_DTS=rk3566 KERNEL_CONFIG=${which_defconfig} -j2
