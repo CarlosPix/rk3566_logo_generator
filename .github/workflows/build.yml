@@ -13,6 +13,7 @@ on:
         - RG353 - Touch
         - RG353 - Not Touch
         - RG503
+        - RGB30
         - RK2023
       picture_link:
         description: 'HTML link to your png file'
